@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { themeSettings } from "./theme";
 
 function App() {
@@ -10,9 +11,16 @@ function App() {
 
   return (
     <div className="app">
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-      </ThemeProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route index path="/" element={<h1>Index page</h1>}/>
+            <Route path="/home" element={<h1>Home page</h1>}/>
+            <Route path="profilePage/:id" element={<h1>Profile page</h1>}/>
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
     </div>
   );
 }
