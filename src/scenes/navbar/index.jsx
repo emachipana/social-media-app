@@ -38,8 +38,6 @@ function Navbar() {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `${user?.firstName} ${user?.lastName}`;
-
   const handleLogout = () => {
     navigate("/");
     dispatch(setLogout());
@@ -90,9 +88,9 @@ function Navbar() {
           <Message sx={{ fontSize: "25px" }} />
           <Notifications sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
-          <FormControl variant="standard" value={fullName}>
+          <FormControl variant="standard" value={user.firstName}>
             <Select
-              value={fullName}
+              value={user.firstName}
               sx={{
                 backgroundColor: neutralLight,
                 width: "150px",
@@ -108,8 +106,8 @@ function Navbar() {
               }}
               input={<InputBase />}
             >
-              <MenuItem value={fullName}>
-                <Typography>{ fullName }</Typography>
+              <MenuItem value={user.firstName}>
+                <Typography>{ user.firstName }</Typography>
               </MenuItem>
               <MenuItem onClick={() => handleLogout()}>Log Out</MenuItem>
             </Select>
@@ -165,9 +163,9 @@ function Navbar() {
             <Message sx={{ fontSize: "25px" }} />
             <Notifications sx={{ fontSize: "25px" }} />
             <Help sx={{ fontSize: "25px" }} />
-            <FormControl variant="standard" value={fullName}>
+            <FormControl variant="standard" value={user.firstName}>
               <Select
-                value={fullName}
+                value={user.firstName}
                 sx={{
                   backgroundColor: neutralLight,
                   width: "150px",
@@ -183,8 +181,8 @@ function Navbar() {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem value={fullName}>
-                  <Typography>{ fullName }</Typography>
+                <MenuItem value={user.firstName}>
+                  <Typography>{ user.firstName }</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => handleLogout()}>Log Out</MenuItem>
               </Select>
