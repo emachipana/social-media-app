@@ -44,7 +44,7 @@ const loginSchema = Yup.object().shape({
     .min(6, "Is too short, minimum 6")
 });
 
-const initialValuesRegister = {
+const initialValues = {
   firstName: "",
   lastName: "",
   email: "",
@@ -52,11 +52,6 @@ const initialValuesRegister = {
   location: "",
   occupation: "",
   picture: ""
-}
-
-const initialValuesLogin = {
-  email: "",
-  password: ""
 }
 
 function Form() {
@@ -106,10 +101,7 @@ function Form() {
   return (
     <Formik
       onSubmit={handleFormSubmit}
-      initialValues={isLogin
-        ? initialValuesLogin
-        : initialValuesRegister
-      }
+      initialValues={initialValues}
       validationSchema={isLogin
         ? loginSchema
         : registerSchema  
