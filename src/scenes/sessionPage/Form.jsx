@@ -1,10 +1,54 @@
 import { useTheme } from "@emotion/react";
 import { useMediaQuery } from "@mui/material";
+import { Formik } from "formik";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../services/auth";
 import { setLogin } from "../../state";
+import * as Yup from "yup";
+
+const registerSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("This field is required"),
+  lastName: Yup.string()
+    .required("This field is required"),
+  email: Yup.string()
+    .required("This field is required")
+    .email("Invalid email"),
+  password: Yup.string()
+    .required("This field is required")
+    .min(6, "Is too short, minimum 6"),
+  location: Yup.string()
+    .required("This field is required"),
+  occupation: Yup.string()
+    .required("This field is required"),
+  picture: Yup.string()
+});
+
+const loginSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("This field is required")
+    .email("Invalid email"),
+  password: Yup.string()
+    .required("This field is required")
+    .min(6, "Is too short, minimum 6")
+});
+
+const initialValuesRegister = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  location: "",
+  occupation: "",
+  picture: ""
+}
+
+const initialValuesLogin = {
+  email: "",
+  password: ""
+}
 
 function Form() {
   const [pageType, setPageType] = useState("login");
@@ -40,6 +84,27 @@ function Form() {
       navigate("/home");
     }
   }
+
+  const handleFormSubmit = async (values, onSubmitProps) => {
+    if(isLogin) await login(values, onSubmitProps);
+    if(isRegister) await register(values, onSubmitProps);
+  }
+
+  return (
+    <Formik
+      onSubmit={handleFormSubmit}
+      initialValues={isLogin
+        ? initialValuesLogin
+        : initialValuesRegister
+      }
+      validationSchema={isLogin
+        ? loginSchema
+        : registerSchema  
+      }
+    >
+
+    </Formik>
+  )
 }
 
 export default Form;
