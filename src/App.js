@@ -3,6 +3,7 @@ import { createTheme } from "@mui/material/styles";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SessionPage from "./scenes/sessionPage";
 import { themeSettings } from "./theme";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
-            <Route index path="/" element={<h1>Index page</h1>}/>
+            <Route index path="/" element={<SessionPage />}/>
             <Route path="/home" element={<h1>Home page</h1>}/>
             <Route path="profilePage/:id" element={<h1>Profile page</h1>}/>
           </Routes>
