@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../services/auth";
+import { setLogin } from "../../state";
 
 function Form() {
   const [pageType, setPageType] = useState("login");
@@ -25,6 +26,19 @@ function Form() {
     onSubmitProps.resetForm();
 
     if(newUser) setPageType("login");
+  }
+
+  const login = async (values, onSubmitProps) => {
+    const { token, ...user } = await AuthService.login(values);
+    onSubmitProps.resetForm();
+
+    if(token && user) {
+      dispatch(
+        setLogin({ user, token })
+      );
+
+      navigate("/home");
+    }
   }
 }
 
