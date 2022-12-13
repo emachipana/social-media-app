@@ -1,6 +1,22 @@
 import { useTheme } from "@emotion/react";
-import { AttachFileOutlined, DeleteOutlined, EditOutlined, GifBoxOutlined, ImageOutlined, MicOutlined, MoreHorizOutlined } from "@mui/icons-material";
-import { Box, Button, Divider, IconButton, InputBase, Typography, useMediaQuery } from "@mui/material";
+import { 
+  AttachFileOutlined,
+  DeleteOutlined,
+  EditOutlined,
+  GifBoxOutlined,
+  ImageOutlined,
+  MicOutlined,
+  MoreHorizOutlined
+} from "@mui/icons-material";
+import { 
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  InputBase,
+  Typography,
+  useMediaQuery
+} from "@mui/material";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
