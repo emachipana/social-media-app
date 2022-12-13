@@ -4,7 +4,6 @@ const baseUrl = "http://localhost:3001/auth"
 
 const login = async (credentials) => {
   const { data } = await axios.post(`${baseUrl}/login`, credentials);
-
   return data;
 }
 
@@ -16,7 +15,6 @@ const register = async (payload) => {
   }
 
   const { data } = await axios.post(`${baseUrl}/register`, payload, config);
-
   return data;
 }
 
