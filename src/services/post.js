@@ -14,6 +14,17 @@ const createPost = async (token, payload) => {
   return data;
 }
 
-const PostService = { createPost };
+const likePost = async (token, postId, userId) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const { data } = await axios.patch(`${baseUrl}/${postId}/like`, { userId }, config);
+  return data;
+}
+
+const PostService = { createPost, likePost };
 
 export default PostService;
