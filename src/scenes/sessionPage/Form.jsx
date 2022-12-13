@@ -70,10 +70,6 @@ function Form() {
       formData.append(key, values[key]);
     }
     
-    if(values.picture) {
-      formData.append("picturePath", values.picture.name);
-    }
-    
     const newUser = await AuthService.register(formData);
     onSubmitProps.resetForm();
 
