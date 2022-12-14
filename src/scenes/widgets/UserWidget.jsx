@@ -27,7 +27,10 @@ function UserWidget() {
   } = user;
 
   return (
-    <WidgetWrapper>
+    <WidgetWrapper
+      position="sticky"
+      top="20px"
+    >
       <FlexBetween
         gap="0.5rem"
         pb="1.1rem"
