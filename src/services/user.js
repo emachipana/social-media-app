@@ -24,6 +24,17 @@ const addRemoveFriend = async (token, userId, friendId) => {
   return data;
 }
 
-const UserService = { getUser, addRemoveFriend };
+const getUserFriends = async (token, userId) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const { data } = await axios.get(`${baseUrl}/${userId}/friends`, config);
+  return data;
+}
+
+const UserService = { getUser, addRemoveFriend, getUserFriends };
 
 export default UserService;
