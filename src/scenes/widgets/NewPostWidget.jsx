@@ -55,7 +55,7 @@ function NewPostWidget() {
   }
 
   return (
-    <WidgetWrapper>
+    <WidgetWrapper mb="2rem">
       <FlexBetween gap="1.5rem">
         <UserImage imagePath={picturePath} />
         <InputBase 

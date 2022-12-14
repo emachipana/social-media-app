@@ -1,13 +1,16 @@
 import { EditOutlined, LocationOnOutlined, ManageAccountsOutlined, WorkOutlineOutlined } from "@mui/icons-material";
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
 import UserImage from "../../components/UserImage";
 import WidgetWrapper from "../../components/WidgetWrapper";
 
 function UserWidget() {
   const user = useSelector((state) => state.user);
+  const friend = useSelector((state) => state.friend);
+  const { pathname } = useLocation();
+  const isProfile = pathname.split("/")[1] === "profile";
   const { palette } = useTheme();
   const navigate = useNavigate();
   const dark = palette.neutral.dark;
@@ -24,12 +27,12 @@ function UserWidget() {
     impressions,
     friends,
     picturePath
-  } = user;
+  } = isProfile ? friend : user;
 
   return (
     <WidgetWrapper
-      position="sticky"
-      top="20px"
+      position={isProfile ? "relative" : "sticky"}
+      top={isProfile ? "0" : "20px"}
     >
       <FlexBetween
         gap="0.5rem"
@@ -111,7 +114,7 @@ function UserWidget() {
 
         <FlexBetween gap="1rem" mb="0.5rem">
           <FlexBetween gap="1rem">
-            <img src="./assets/twitter.png" alt="twitter" />
+            <img src="../assets/twitter.png" alt="twitter" />
             <Box>
               <Typography color={main} fontWeight="500">
                 Twitter
@@ -124,7 +127,7 @@ function UserWidget() {
 
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
-            <img src="./assets/linkedin.png" alt="linkedin" />
+            <img src="../assets/linkedin.png" alt="linkedin" />
             <Box>
               <Typography color={main} fontWeight="500">
                 Linkedin
