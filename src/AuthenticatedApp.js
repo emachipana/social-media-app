@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./scenes/homePage";
 import Navbar from "./scenes/navbar";
+import ProfilePage from "./scenes/profilePage";
 
 function AuthenticatedApp() {
   return (
@@ -10,7 +11,7 @@ function AuthenticatedApp() {
       <Routes>
         <Route index path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/profile/:id" element={<h1>Profile page</h1>} />
+        <Route path="/profile/:id" element={<ProfilePage />} />
       </Routes>
     </Box>
   )
