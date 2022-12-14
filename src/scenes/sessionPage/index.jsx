@@ -2,9 +2,9 @@ import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Form from "./Form";
 
 function SessionPage() {
-  const theme = useTheme();
+  const { palette } = useTheme();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-  const alt = theme.palette.background.alt;
+  const alt = palette.background.alt;
 
   return (
     <Box>

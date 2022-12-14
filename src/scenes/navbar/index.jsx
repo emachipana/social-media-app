@@ -32,13 +32,16 @@ function Navbar() {
   const user = useSelector((state) => state.user);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
-  const theme = useTheme();
-  const neutralLight = theme.palette.neutral.light;
-  const dark = theme.palette.neutral.dark;
-  const primaryLight = theme.palette.primary.light;
-  const alt = theme.palette.background.alt;
+  const { palette } = useTheme();
+  const neutralLight = palette.neutral.light;
+  const dark = palette.neutral.dark;
+  const primaryLight = palette.primary.light;
+  const alt = palette.background.alt;
 
-  const fullName = `${user?.firstName} ${user?.lastName}`;
+  const handleLogout = () => {
+    navigate("/");
+    dispatch(setLogout());
+  }
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
@@ -76,7 +79,7 @@ function Navbar() {
       {isNonMobileScreens ? (
         <FlexBetween gap="2rem">
           <IconButton onClick={() => dispatch(setMode())}>
-            {theme.palette.mode === "dark" ? (
+            {palette.mode === "dark" ? (
               <DarkMode sx={{ fontSize: "25px" }} />
             ) : (
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
@@ -85,9 +88,9 @@ function Navbar() {
           <Message sx={{ fontSize: "25px" }} />
           <Notifications sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
-          <FormControl variant="standard" value={fullName}>
+          <FormControl variant="standard" value={user.firstName}>
             <Select
-              value={fullName}
+              value={user.firstName}
               sx={{
                 backgroundColor: neutralLight,
                 width: "150px",
@@ -103,10 +106,10 @@ function Navbar() {
               }}
               input={<InputBase />}
             >
-              <MenuItem value={fullName}>
-                <Typography>{ fullName }</Typography>
+              <MenuItem value={user.firstName}>
+                <Typography>{ user.firstName }</Typography>
               </MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
+              <MenuItem onClick={() => handleLogout()}>Log Out</MenuItem>
             </Select>
           </FormControl>
         </FlexBetween>
@@ -151,7 +154,7 @@ function Navbar() {
               onClick={() => dispatch(setMode())}
               sx={{ fontSize: "25px" }}
             >
-              {theme.palette.mode === "dark" ? (
+              {palette.mode === "dark" ? (
                 <DarkMode sx={{ fontSize: "25px" }} />
               ) : (
                 <LightMode sx={{ color: dark, fontSize: "25px" }} />
@@ -160,9 +163,9 @@ function Navbar() {
             <Message sx={{ fontSize: "25px" }} />
             <Notifications sx={{ fontSize: "25px" }} />
             <Help sx={{ fontSize: "25px" }} />
-            <FormControl variant="standard" value={fullName}>
+            <FormControl variant="standard" value={user.firstName}>
               <Select
-                value={fullName}
+                value={user.firstName}
                 sx={{
                   backgroundColor: neutralLight,
                   width: "150px",
@@ -178,10 +181,10 @@ function Navbar() {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem value={fullName}>
-                  <Typography>{ fullName }</Typography>
+                <MenuItem value={user.firstName}>
+                  <Typography>{ user.firstName }</Typography>
                 </MenuItem>
-                <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
+                <MenuItem onClick={() => handleLogout()}>Log Out</MenuItem>
               </Select>
             </FormControl>
           </FlexBetween>

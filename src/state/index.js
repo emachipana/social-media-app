@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   mode: "light",
-  user: null,
+  user: {},
   token: null,
   posts: []
 }
@@ -18,9 +18,13 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
+    setUser: (state, action) => {
+      state.user = action.payload.user;
+    },
     setLogout: (state) => {
-      state.user = null;
+      state.user = {};
       state.token = null;
+      state.posts = [];
     },
     setFriends: (state, action) => {
       if(state.user) {
@@ -33,7 +37,7 @@ export const authSlice = createSlice({
       state.posts = action.payload.posts;
     },
     setPost: (state, action) => {
-      state.posts.push(action.payload.post);
+      state.posts.unshift(action.payload.post);
     },
     setUpdatedPost: (state, action) => {
       const updatedPosts = state.posts.map((post) => {
@@ -49,6 +53,7 @@ export const authSlice = createSlice({
 export const { 
   setMode,
   setLogin,
+  setUser,
   setLogout,
   setFriends,
   setPosts,
