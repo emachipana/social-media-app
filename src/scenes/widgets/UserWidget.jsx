@@ -8,11 +8,11 @@ import WidgetWrapper from "../../components/WidgetWrapper";
 
 function UserWidget() {
   const user = useSelector((state) => state.user);
-  const theme = useTheme();
+  const { palette } = useTheme();
   const navigate = useNavigate();
-  const dark = theme.palette.neutral.dark;
-  const medium = theme.palette.neutral.medium;
-  const main = theme.palette.neutral.main;
+  const dark = palette.neutral.dark;
+  const medium = palette.neutral.medium;
+  const main = palette.neutral.main;
 
   const {
     id,
@@ -45,7 +45,7 @@ function UserWidget() {
               fontWeight="500"
               sx={{
                 "&:hover": {
-                  color: theme.palette.primary.light,
+                  color: palette.primary.light,
                   cursor: "pointer"
                 }
               }}

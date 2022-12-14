@@ -31,12 +31,12 @@ function NewPostWidget() {
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [description, setDescription] = useState("");
-  const theme = useTheme();
+  const { palette } = useTheme();
   const { id, picturePath } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-  const mediumMain = theme.palette.neutral.mediumMain;
-  const medium = theme.palette.neutral.medium;
+  const mediumMain = palette.neutral.mediumMain;
+  const medium = palette.neutral.medium;
 
   const handlePost = async () => {
     const formData = new FormData();
@@ -64,7 +64,7 @@ function NewPostWidget() {
           value={description}
           sx={{
             width: "100%",
-            backgroundColor: theme.palette.neutral.light,
+            backgroundColor: palette.neutral.light,
             borderRadius: "2rem",
             padding: "1rem 2rem"
           }}
@@ -86,7 +86,7 @@ function NewPostWidget() {
               <FlexBetween>
                 <Box
                   {...getRootProps()}
-                  border={`2px dashed ${theme.palette.primary.main}`}
+                  border={`2px dashed ${palette.primary.main}`}
                   p="1rem"
                   width="100%"
                   sx={{ "&:hover": { cursor: "pointer" } }}
@@ -159,8 +159,8 @@ function NewPostWidget() {
           disabled={!description}
           onClick={handlePost}
           sx={{
-            color: theme.palette.background.alt,
-            backgroundColor: theme.palette.primary.main,
+            color: palette.background.alt,
+            backgroundColor: palette.primary.main,
             borderRadius: "3rem",
             "&:disabled": {
               color: medium

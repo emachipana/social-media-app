@@ -56,13 +56,14 @@ const initialValues = {
 
 function Form() {
   const [pageType, setPageType] = useState("login");
-  const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isNonMobileScreens = useMediaQuery("(min-width: 600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
-  const mainColor = theme.palette.primary.main;
+  
+  const { palette } = useTheme();
+  const main = palette.primary.main;
 
   const register = async (values, onSubmitProps) => {
     const formData = new FormData();
@@ -167,7 +168,7 @@ function Form() {
                 />
                 <Box
                   gridColumn="span 4"
-                  border={`1px solid ${theme.palette.neutral.medium}`}
+                  border={`1px solid ${palette.neutral.medium}`}
                   borderRadius="5px"
                   p="1rem"
                 >
@@ -181,7 +182,7 @@ function Form() {
                     {({ getRootProps, getInputProps }) => (
                       <Box
                         {...getRootProps()}
-                        border={`2px dashed ${mainColor}`}
+                        border={`2px dashed ${main}`}
                         p="1rem"
                         sx={{ "&:hover": { cursor: "pointer" }}}
                       >
@@ -232,9 +233,9 @@ function Form() {
               sx={{
                 m: "2rem 0",
                 p: "1rem",
-                backgroundColor: mainColor,
-                color: theme.palette.background.alt,
-                "&:hover": { color: mainColor }
+                backgroundColor: main,
+                color: palette.background.alt,
+                "&:hover": { color: main }
               }}
             >
               { isLogin ? "Login" : "Register" }
@@ -246,10 +247,10 @@ function Form() {
               }}
               sx={{
                 textDecoration: "underline",
-                color: mainColor,
+                color: main,
                 "&:hover": {
                   cursor: "pointer",
-                  color: theme.palette.primary.dark
+                  color: palette.primary.dark
                 }
               }}
             >

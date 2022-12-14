@@ -13,11 +13,11 @@ function Friend({ friendId, userPicturePath, userName, location }) {
   const { id: userId, friends } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
 
-  const theme = useTheme();
-  const primaryLight = theme.palette.primary.light;
-  const primaryDark = theme.palette.primary.dark;
-  const main = theme.palette.neutral.main;
-  const medium = theme.palette.neutral.medium;
+  const { palette } = useTheme();
+  const primaryLight = palette.primary.light;
+  const primaryDark = palette.primary.dark;
+  const main = palette.neutral.main;
+  const medium = palette.neutral.medium;
 
   const isFriend = friends.find((friend) => friend.id === friendId);
   const itsMe = userId === friendId;
@@ -43,7 +43,7 @@ function Friend({ friendId, userPicturePath, userName, location }) {
             fontWeight="500"
             sx={{
               "&:hover": {
-                color: theme.palette.primary.light,
+                color: palette.primary.light,
                 cursor: "pointer"
               }
             }}

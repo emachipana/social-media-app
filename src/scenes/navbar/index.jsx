@@ -32,11 +32,11 @@ function Navbar() {
   const user = useSelector((state) => state.user);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
-  const theme = useTheme();
-  const neutralLight = theme.palette.neutral.light;
-  const dark = theme.palette.neutral.dark;
-  const primaryLight = theme.palette.primary.light;
-  const alt = theme.palette.background.alt;
+  const { palette } = useTheme();
+  const neutralLight = palette.neutral.light;
+  const dark = palette.neutral.dark;
+  const primaryLight = palette.primary.light;
+  const alt = palette.background.alt;
 
   const handleLogout = () => {
     navigate("/");
@@ -79,7 +79,7 @@ function Navbar() {
       {isNonMobileScreens ? (
         <FlexBetween gap="2rem">
           <IconButton onClick={() => dispatch(setMode())}>
-            {theme.palette.mode === "dark" ? (
+            {palette.mode === "dark" ? (
               <DarkMode sx={{ fontSize: "25px" }} />
             ) : (
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
@@ -154,7 +154,7 @@ function Navbar() {
               onClick={() => dispatch(setMode())}
               sx={{ fontSize: "25px" }}
             >
-              {theme.palette.mode === "dark" ? (
+              {palette.mode === "dark" ? (
                 <DarkMode sx={{ fontSize: "25px" }} />
               ) : (
                 <LightMode sx={{ color: dark, fontSize: "25px" }} />

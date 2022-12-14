@@ -28,9 +28,9 @@ function PostWidget({ data }) {
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 
-  const theme = useTheme();
-  const main = theme.palette.neutral.main;
-  const primary = theme.palette.primary.main;
+  const { palette } = useTheme();
+  const main = palette.neutral.main;
+  const primary = palette.primary.main;
 
   const patchLike = async () => {
     const updatedPost = await PostService.likePost(token, id, loggedInUserId);
