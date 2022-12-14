@@ -16,10 +16,10 @@ function HomePage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetch() {
+    const fetch = async () => {
       const user = await UserService.getUser(token, id);
-      const posts = await PostService.getFeedPosts(token);
       const friends = await UserService.getUserFriends(token, id);
+      const posts = await PostService.getFeedPosts(token);
 
       dispatch(setUser({ user }));
       dispatch(setFriends({ friends }));
