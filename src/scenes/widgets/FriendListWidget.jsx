@@ -1,16 +1,19 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import Friend from "../../components/Friend";
 import WidgetWrapper from "../../components/WidgetWrapper";
 
 function FriendListWidget() {
   const { palette } = useTheme();
   const { friends } = useSelector((state) => state.user);
+  const { pathname } = useLocation();
+  const isProfile = pathname.split("/")[1] === "profile";
 
   return (
     <WidgetWrapper
-      position="sticky"
-      top="20px"
+      position={isProfile ? "relative" : "sticky"}
+      top={isProfile ? "0" : "20px"}
     >
       <Typography
       colot={palette.neutral.dark}
