@@ -13,6 +13,17 @@ const getFeedPosts = async (token) => {
   return data;
 }
 
+const getUserPosts = async (token, userId) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const { data } = await axios.get(`${baseUrl}/${userId}/posts`, config);
+  return data;
+ }
+
 const createPost = async (token, payload) => {
   const config = {
     headers: {
@@ -36,6 +47,6 @@ const likePost = async (token, postId, userId) => {
   return data;
 }
 
-const PostService = { createPost, likePost, getFeedPosts };
+const PostService = { createPost, likePost, getFeedPosts, getUserPosts };
 
 export default PostService;
