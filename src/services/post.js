@@ -2,6 +2,17 @@ import axios from "axios";
 
 const baseUrl = "http://localhost:3001/posts";
 
+const getFeedPosts = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const { data } = await axios.get(baseUrl, config);
+  return data;
+}
+
 const createPost = async (token, payload) => {
   const config = {
     headers: {
@@ -25,6 +36,6 @@ const likePost = async (token, postId, userId) => {
   return data;
 }
 
-const PostService = { createPost, likePost };
+const PostService = { createPost, likePost, getFeedPosts };
 
 export default PostService;
