@@ -13,6 +13,17 @@ const getUser = async (token, id) => {
   return data;
 }
 
-const UserService = { getUser };
+const addRemoveFriend = async (token, userId, friendId) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const { data } = await axios.patch(`${baseUrl}/${userId}/${friendId}`, {}, config);
+  return data;
+}
+
+const UserService = { getUser, addRemoveFriend };
 
 export default UserService;
